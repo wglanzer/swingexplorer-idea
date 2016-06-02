@@ -2,6 +2,7 @@
     <id>swingexplorer-plugin-v2</id>
     <name>SwingExplorer Integration v2</name>
     <version>2016.1-1.6.0</version>
+    <vendor email="wernerglanzer@googlemail.com">Werner Glanzer</vendor>
 
     <description><![CDATA[
       <p>
@@ -11,7 +12,7 @@
       <p></p>
 	  <p>
 		The plug-in was original contributed by <a href="mailto:pmlocek@gmail.com">Piotr Mlocek</a>.
-		Modified by <a href="mailto:wernerglanzer@googlemail.com">Werner Glanzer</a>.
+		Modified by <a href="mailto:wernerglanzer@googlemail.com">Werner Glanzer</a> (See on <a href="https://github.com/Cybroken/swingexplorer-idea">GitHub</a>).
       </p>
    ]]></description>
 
