@@ -1,0 +1,10 @@
+#	Allgemeine Ignores
+
+*.ipr
+*.iml
+*.iws
+/.idea
+
+#	Target Ignores
+
+/target
