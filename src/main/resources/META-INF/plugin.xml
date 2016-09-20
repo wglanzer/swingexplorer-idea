@@ -1,7 +1,7 @@
 <idea-plugin version="2">
     <id>swingexplorer-plugin-v2</id>
     <name>SwingExplorer Integration v2</name>
-    <version>2016.1-1.6.0</version>
+    <version>2016.1-1.6.0-1.0.1</version>
     <vendor email="wernerglanzer@googlemail.com">Werner Glanzer</vendor>
 
     <description><![CDATA[
@@ -15,6 +15,16 @@
 		Modified by <a href="mailto:wernerglanzer@googlemail.com">Werner Glanzer</a> (See on <a href="https://github.com/Cybroken/swingexplorer-idea">GitHub</a>).
       </p>
    ]]></description>
+    <change-notes><![CDATA[
+    <p>2016.1-1.6.0-1.0.1</p>
+    <ul>
+      <li>Fix: Invalid path to libs</li>
+    </ul>
+    <p>2016.1-1.6.0</p>
+    <ul>
+      <li>Updated plugin to work with IntelliJ IDEA 2016.1</li>
+    </ul>
+    ]]></change-notes>
 
     <idea-version since-build="145"/>
 

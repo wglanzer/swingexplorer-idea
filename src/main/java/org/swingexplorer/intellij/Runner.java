@@ -221,7 +221,7 @@ public class Runner extends DefaultJavaProgramRunner
       VirtualFile lib = pluginDir.findChild("lib");
       if (lib != null && lib.isDirectory())
       {
-        VirtualFile libraryDirectory = lib.findChild("org/swingexplorer/intellij/libs");
+        VirtualFile libraryDirectory = lib.findChild("libs");
         if (libraryDirectory != null && libraryDirectory.isDirectory())
         {
           swagJarFile = libraryDirectory.findChild("swag.jar");
