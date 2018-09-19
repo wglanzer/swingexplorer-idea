@@ -73,14 +73,9 @@ public class Runner extends DefaultJavaProgramRunner
     _initJavaSettings(state);
 
     // Ausführen
-    super.execute(environment, new Callback()
-    {
-      @Override
-      public void processStarted(RunContentDescriptor pRunContentDescriptor)
-      {
-        // Listener initialisieren, damit Benachrichtigungen vom SwingExplorer ankommen
-        _initListener();
-      }
+    super.execute(environment, pRunContentDescriptor -> {
+      // Listener initialisieren, damit Benachrichtigungen vom SwingExplorer ankommen
+      _initListener();
     }, state);
   }
 
@@ -140,29 +135,24 @@ public class Runner extends DefaultJavaProgramRunner
    */
   private void _initListener()
   {
-    new Thread(new Runnable()
-    {
-      @Override
-      public void run()
+    new Thread(() -> {
+      try
       {
-        try
-        {
-          JMXServiceURL url = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://:" + port + "/server");
-          JMXConnector jmxc = _connectToSwingExplorer(url);
-          MBeanServerConnection mbsc = jmxc.getMBeanServerConnection();
+        JMXServiceURL url = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://:" + port + "/server");
+        JMXConnector jmxc = _connectToSwingExplorer(url);
+        MBeanServerConnection mbsc = jmxc.getMBeanServerConnection();
 
-          ObjectName name = new ObjectName("org.swingexplorer:name=IDESupport");
-          mbsc.invoke(name, "connect", new Object[0], new String[0]);
+        ObjectName name = new ObjectName("org.swingexplorer:name=IDESupport");
+        mbsc.invoke(name, "connect", new Object[0], new String[0]);
 
-          Listener listener = new Listener(project);
-          mbsc.addNotificationListener(name, listener, null, null);
+        Listener listener = new Listener(project);
+        mbsc.addNotificationListener(name, listener, null, null);
 
-          IntelliJUtil.notifiy(NotificationType.INFORMATION, "Connection successfully established!");
-        }
-        catch (Exception e)
-        {
-          IntelliJUtil.notifiy(NotificationType.ERROR, "Connection could not be established! (" + e.getMessage() + ")");
-        }
+        IntelliJUtil.notifiy(NotificationType.INFORMATION, "Connection successfully established!", project);
+      }
+      catch (Exception e)
+      {
+        IntelliJUtil.notifiy(NotificationType.ERROR, "Connection could not be established! (" + e.getMessage() + ")", project);
       }
     }, "tConnectionThread").start();
   }

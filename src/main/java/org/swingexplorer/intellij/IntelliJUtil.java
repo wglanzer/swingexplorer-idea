@@ -1,14 +1,20 @@
 package org.swingexplorer.intellij;
 
 import com.intellij.ide.impl.ProjectUtil;
-import com.intellij.notification.*;
+import com.intellij.notification.NotificationGroup;
+import com.intellij.notification.NotificationType;
 import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.editor.*;
-import com.intellij.openapi.fileEditor.*;
+import com.intellij.openapi.editor.CaretModel;
+import com.intellij.openapi.editor.Editor;
+import com.intellij.openapi.editor.LogicalPosition;
+import com.intellij.openapi.editor.ScrollType;
+import com.intellij.openapi.fileEditor.FileEditorManager;
+import com.intellij.openapi.fileEditor.OpenFileDescriptor;
 import com.intellij.openapi.fileEditor.ex.FileEditorProviderManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.psi.*;
+import com.intellij.psi.JavaPsiFacade;
+import com.intellij.psi.PsiClass;
 import com.intellij.psi.search.GlobalSearchScope;
 
 /**
@@ -54,57 +60,39 @@ public class IntelliJUtil
    */
   public static void navigate(final Project pProject, final String pClass, final int pLineNumber)
   {
-    ApplicationManager.getApplication().invokeLater(new Runnable()
-    {
-      @Override
-      public void run()
+    ApplicationManager.getApplication().invokeLater(() -> ApplicationManager.getApplication().runReadAction(() -> {
+      if (!pProject.isInitialized())
+        return;
+
+      final GlobalSearchScope searchScope = GlobalSearchScope.allScope(pProject);
+      PsiClass psiClass = JavaPsiFacade.getInstance(pProject).findClass(pClass, searchScope);
+
+      if (psiClass != null)
       {
-        ApplicationManager.getApplication().runReadAction(new Runnable()
+        FileEditorProviderManager editorProviderManager = FileEditorProviderManager.getInstance();
+        VirtualFile virtualFile = psiClass.getContainingFile().getVirtualFile();
+
+        if (virtualFile == null || editorProviderManager.getProviders(pProject, virtualFile).length == 0)
+          return;
+        OpenFileDescriptor descriptor = new OpenFileDescriptor(pProject, virtualFile);
+
+        final Editor editor = FileEditorManager.getInstance(pProject).openTextEditor(descriptor, true);
+        if (editor != null)
         {
-          @Override
-          public void run()
-          {
-            if (!pProject.isInitialized())
-              return;
+          if (pLineNumber > editor.getDocument().getLineCount())
+            return;
 
-            final GlobalSearchScope searchScope = GlobalSearchScope.allScope(pProject);
-            PsiClass psiClass = JavaPsiFacade.getInstance(pProject).findClass(pClass, searchScope);
+          CaretModel caretModel = editor.getCaretModel();
+          LogicalPosition pos = new LogicalPosition(pLineNumber - 1, 0);
+          caretModel.moveToLogicalPosition(pos);
 
-            if (psiClass != null)
-            {
-              FileEditorProviderManager editorProviderManager = FileEditorProviderManager.getInstance();
-              VirtualFile virtualFile = psiClass.getContainingFile().getVirtualFile();
+          ApplicationManager.getApplication().invokeLater(() -> editor.getScrollingModel().scrollToCaret(ScrollType.CENTER));
+        }
 
-              if (virtualFile == null || editorProviderManager.getProviders(pProject, virtualFile).length == 0)
-                return;
-              OpenFileDescriptor descriptor = new OpenFileDescriptor(pProject, virtualFile);
-
-              final Editor editor = FileEditorManager.getInstance(pProject).openTextEditor(descriptor, true);
-              if (editor != null)
-              {
-                if (pLineNumber > editor.getDocument().getLineCount())
-                  return;
-
-                CaretModel caretModel = editor.getCaretModel();
-                LogicalPosition pos = new LogicalPosition(pLineNumber - 1, 0);
-                caretModel.moveToLogicalPosition(pos);
-
-                ApplicationManager.getApplication().invokeLater(new Runnable()
-                {
-                  public void run()
-                  {
-                    editor.getScrollingModel().scrollToCaret(ScrollType.CENTER);
-                  }
-                });
-              }
-
-              ProjectUtil.focusProjectWindow(pProject, true);
-            }
-            else
-              notifiyBalloon(NotificationType.ERROR, "Class not found: " + pClass);
-          }
-        });
+        ProjectUtil.focusProjectWindow(pProject, true);
       }
-    });
+      else
+        notifiyBalloon(NotificationType.ERROR, "Class not found: " + pClass, pProject);
+    }));
   }
 }
