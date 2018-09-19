@@ -19,21 +19,17 @@ import com.intellij.psi.search.GlobalSearchScope;
 public class IntelliJUtil
 {
 
-  static
-  {
-    Notifications.Bus.register(IStaticIDs.NOTIFICATION_ID, NotificationDisplayType.NONE);
-    Notifications.Bus.register(IStaticIDs.NOTIFICATION_ID_WINDOW, NotificationDisplayType.TOOL_WINDOW);
-  }
-
   /**
    * Zeug im EventLog ausgeben
    *
    * @param pType    Typ der Notification
    * @param pMessage Nachricht, die ausgegeben werden soll
    */
-  public static void notifiy(NotificationType pType, String pMessage)
+  public static void notifiy(NotificationType pType, String pMessage, Project pProject)
   {
-    Notifications.Bus.notify(new Notification(IStaticIDs.NOTIFICATION_ID, "", "SwingExplorer: " + pMessage, pType));
+    NotificationGroup.logOnlyGroup(IStaticIDs.NOTIFICATION_ID)
+            .createNotification("", "SwingExplorer: " + pMessage, pType, null)
+            .notify(pProject);
   }
 
   /**
@@ -42,9 +38,11 @@ public class IntelliJUtil
    * @param pType    Typ der Notification
    * @param pMessage Nachricht, die ausgegeben werden soll
    */
-  public static void notifiyBalloon(NotificationType pType, String pMessage)
+  public static void notifiyBalloon(NotificationType pType, String pMessage, Project pProject)
   {
-    Notifications.Bus.notify(new Notification(IStaticIDs.NOTIFICATION_ID_WINDOW, "", pMessage, pType));
+    NotificationGroup.toolWindowGroup(IStaticIDs.NOTIFICATION_ID_WINDOW, IStaticIDs.NOTIFICATION_ID_WINDOW)
+            .createNotification("", pMessage, pType, null)
+            .notify(pProject);
   }
 
   /**
