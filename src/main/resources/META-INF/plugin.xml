@@ -1,21 +1,25 @@
-<idea-plugin version="2">
-    <id>swingexplorer-plugin-v2</id>
-    <name>SwingExplorer Integration v2</name>
-    <version>182.4505.22-1.6.0</version>
-    <vendor email="wernerglanzer@googlemail.com">Werner Glanzer</vendor>
+<idea-plugin>
+  <id>swingexplorer-plugin-v2</id>
+  <name>SwingExplorer Integration v2</name>
+  <version>2020.1-1.6.0</version>
+  <vendor email="wernerglanzer@googlemail.com">Werner Glanzer</vendor>
 
-    <description><![CDATA[
+  <description><![CDATA[
       <p>
-      The plug-in integrates SwingExplorer into IntelliJ IDEA.
-	  SwingExplorer is a tool for Java Swing application debugging.
+      SwingExplorer is a tool for Java Swing application debugging.
+      This plugin integrates it into IntelliJ IDEA, to use it without external console
       </p>
       <p></p>
 	  <p>
 		The plug-in was original contributed by <a href="mailto:pmlocek@gmail.com">Piotr Mlocek</a>.
-		Modified by <a href="mailto:wernerglanzer@googlemail.com">Werner Glanzer</a> (See on <a href="https://github.com/Cybroken/swingexplorer-idea">GitHub</a>).
+		Modified by <a href="mailto:wernerglanzer@googlemail.com">Werner Glanzer</a> (See on <a href="https://github.com/wglanzer/swingexplorer-idea">GitHub</a>).
       </p>
    ]]></description>
-    <change-notes><![CDATA[
+  <change-notes><![CDATA[
+    <p>2020.1-1.6.0</p>
+    <ul>
+      <li>Updated plugin to work with IntelliJ IDEA 2020.1</li>
+    </ul>
     <p>182.4505.22-1.6.0</p>
     <ul>
       <li>Removed deprecated API-Calls to work properly with future versions of IntelliJ IDEA</li>
@@ -30,13 +34,10 @@
     </ul>
     ]]></change-notes>
 
-    <idea-version since-build="182.4505.22"/>
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+  </extensions>
 
-    <extensions defaultExtensionNs="com.intellij">
-        <executor implementation="org.swingexplorer.intellij.Executor"/>
-        <programRunner implementation="org.swingexplorer.intellij.Runner"/>
-    </extensions>
-
-    <depends>com.intellij.modules.platform</depends>
-
+  <depends>com.intellij.modules.platform</depends>
+  <depends>com.intellij.modules.java</depends>
 </idea-plugin>
