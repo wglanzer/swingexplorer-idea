@@ -11,6 +11,8 @@ repositories {
 }
 
 dependencies {
+    compile("org.swinglabs:swing-layout:1.0.3")
+    compile("javassist:javassist:3.12.1.GA")
     compile(files("libs/swingexplorer-agent-1.7.0.jar", "libs/swingexplorer-core-1.7.0.jar"))
     testImplementation("junit:junit:4.12")
 }
