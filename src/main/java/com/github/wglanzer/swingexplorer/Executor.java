@@ -6,8 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import javax.swing.*;
 
 /**
- * Gibt bestimmte Eigenschaften f�r den ausf�hrenden Button, den Executor, vor und beschreibt ihn.
- * Verbindet Executor und Runner
+ * Defines a custom action to run swing explorer and connects it to our Runner
  *
  * @author w.glanzer, 25.09.2015
  * @see Runner
@@ -15,24 +14,27 @@ import javax.swing.*;
 public class Executor extends DefaultRunExecutor
 {
 
+  public static final String ID = "Run-with-SE";
+  private static final ImageIcon _ICON = new ImageIcon(Executor.class.getResource("execute.png"));
+
   @NotNull
   @Override
   public String getId()
   {
-    return IStaticIDs.RUNNER_ID;
+    return ID;
   }
 
   @Override
   public String getContextActionId()
   {
-    return IStaticIDs.EXECUTOR_CONTEXT_ACTION_ID;
+    return Runner.ID;
   }
 
   @NotNull
   @Override
   public Icon getIcon()
   {
-    return new ImageIcon(Executor.class.getResource("execute.png"));
+    return _ICON;
   }
 
 }

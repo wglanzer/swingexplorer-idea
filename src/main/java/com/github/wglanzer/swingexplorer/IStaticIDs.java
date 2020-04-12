@@ -9,9 +9,6 @@ interface IStaticIDs
 {
 
   String PLUGIN_ID = "swingexplorer-plugin-v2";
-  String RUNNER_ID = "Run-with-SE";
-  String EXECUTOR_CONTEXT_ACTION_ID = "RunWithSEClass";
-  String NOTIFICATION_ID = "SWEXP_NOTIFICATION";
-  String NOTIFICATION_ID_WINDOW = "SWEXP_NOTIFICATION_BUBBLE";
+  String NOTIFICATION_ID_WINDOW = "SWEXP_NOTIFICATION";
 
 }
