@@ -1,4 +1,4 @@
-package org.swingexplorer.intellij;
+package com.github.wglanzer.swingexplorer;
 
 import com.intellij.openapi.project.Project;
 
@@ -6,7 +6,7 @@ import javax.management.*;
 import java.util.HashMap;
 
 /**
- * Listener, um die Kommunikation des SwingExplorers mit IntelliJ möglich zu machen
+ * Listener, um die Kommunikation des SwingExplorers mit IntelliJ mï¿½glich zu machen
  *
  * @author w.glanzer, 25.09.2015
  */

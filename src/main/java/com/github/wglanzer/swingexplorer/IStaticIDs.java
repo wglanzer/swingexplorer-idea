@@ -1,4 +1,4 @@
-package org.swingexplorer.intellij;
+package com.github.wglanzer.swingexplorer;
 
 /**
  * Beinhaltet spezifische IDs

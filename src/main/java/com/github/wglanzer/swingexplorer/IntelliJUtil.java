@@ -1,4 +1,4 @@
-package org.swingexplorer.intellij;
+package com.github.wglanzer.swingexplorer;
 
 import com.intellij.ide.impl.ProjectUtil;
 import com.intellij.notification.NotificationGroup;
@@ -18,7 +18,7 @@ import com.intellij.psi.PsiClass;
 import com.intellij.psi.search.GlobalSearchScope;
 
 /**
- * Allgemeine Interaktionen mit IntelliJ möglich machen
+ * Allgemeine Interaktionen mit IntelliJ mï¿½glich machen
  *
  * @author W.Glanzer, 25.09.2015
  */

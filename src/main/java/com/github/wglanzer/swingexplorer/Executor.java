@@ -1,4 +1,4 @@
-package org.swingexplorer.intellij;
+package com.github.wglanzer.swingexplorer;
 
 import com.intellij.execution.executors.DefaultRunExecutor;
 import org.jetbrains.annotations.NotNull;

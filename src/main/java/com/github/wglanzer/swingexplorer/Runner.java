@@ -1,11 +1,10 @@
-package org.swingexplorer.intellij;
+package com.github.wglanzer.swingexplorer;
 
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.application.ApplicationConfiguration;
 import com.intellij.execution.configurations.*;
 import com.intellij.execution.impl.DefaultJavaProgramRunner;
 import com.intellij.execution.runners.*;
-import com.intellij.execution.ui.RunContentDescriptor;
 import com.intellij.ide.plugins.*;
 import com.intellij.notification.NotificationType;
 import com.intellij.openapi.extensions.PluginId;
@@ -21,7 +20,7 @@ import java.io.*;
 import java.net.ServerSocket;
 
 /**
- * Wird aufgerufen, wenn das Plugin ausgeführt werden soll
+ * Wird aufgerufen, wenn das Plugin ausgefï¿½hrt werden soll
  *
  * @author w.glanzer, 25.09.2015
  */
@@ -72,7 +71,7 @@ public class Runner extends DefaultJavaProgramRunner
     // Java-Settings initialisieren
     _initJavaSettings(state);
 
-    // Ausführen
+    // Ausfï¿½hren
     super.execute(environment, pRunContentDescriptor -> {
       // Listener initialisieren, damit Benachrichtigungen vom SwingExplorer ankommen
       _initListener();
@@ -80,7 +79,7 @@ public class Runner extends DefaultJavaProgramRunner
   }
 
   /**
-   * Initialisiert den Classpath, die MainRoutine und VMOptions für Java in Verbindung mit dem SwingExplorer
+   * Initialisiert den Classpath, die MainRoutine und VMOptions fï¿½r Java in Verbindung mit dem SwingExplorer
    *
    * @param pProfileState Profile-State
    * @throws ExecutionException
@@ -95,7 +94,7 @@ public class Runner extends DefaultJavaProgramRunner
       _initPort();
       _appendSwingExplorerJarsToClassPath(profileState);
 
-      // VMParameter hinzufügen
+      // VMParameter hinzufï¿½gen
       JavaParameters javaParameters = profileState.getJavaParameters();
       ParametersList vmParametersList = javaParameters.getVMParametersList();
       vmParametersList.add("-javaagent:" + swagJarFile.getPath());
@@ -111,7 +110,7 @@ public class Runner extends DefaultJavaProgramRunner
   }
 
   /**
-   * Holt einen RANDOM-Port für die Verwendung im SwingExplorer heran
+   * Holt einen RANDOM-Port fï¿½r die Verwendung im SwingExplorer heran
    *
    * @throws ExecutionException Wenn kein Port gefunden wurde
    */
@@ -131,7 +130,7 @@ public class Runner extends DefaultJavaProgramRunner
 
   /**
    * Initialisiert den Listener, wenn im SwingExplorer etwas passiert.
-   * Allerdings in einem neuen Thread, weil sich sonst IntelliJ aufhängen kann
+   * Allerdings in einem neuen Thread, weil sich sonst IntelliJ aufhï¿½ngen kann
    */
   private void _initListener()
   {
@@ -162,7 +161,7 @@ public class Runner extends DefaultJavaProgramRunner
    *
    * @param pURL URL, auf die sich verbunden werden soll
    * @return JMX-Verbindung
-   * @throws Exception Wenn sich entweder nicht zum SwingExplorer verbunden werden kann, oder der Thread.sleep nicht ausgeführt werden konnte
+   * @throws Exception Wenn sich entweder nicht zum SwingExplorer verbunden werden kann, oder der Thread.sleep nicht ausgefï¿½hrt werden konnte
    */
   private JMXConnector _connectToSwingExplorer(JMXServiceURL pURL) throws Exception
   {
@@ -183,9 +182,9 @@ public class Runner extends DefaultJavaProgramRunner
   }
 
   /**
-   * Fügt die JAR-Dateien zum Classpath des auszuführenden Programms hinzu
+   * Fï¿½gt die JAR-Dateien zum Classpath des auszufï¿½hrenden Programms hinzu
    *
-   * @param profileState Profil, bei dem es hinzugefügt werden soll
+   * @param profileState Profil, bei dem es hinzugefï¿½gt werden soll
    * @throws ExecutionException Wenn die JavaParameter nicht geladen werden konnten
    */
   private void _appendSwingExplorerJarsToClassPath(ApplicationConfiguration.JavaApplicationCommandLineState profileState) throws ExecutionException
