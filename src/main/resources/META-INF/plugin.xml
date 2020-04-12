@@ -1,7 +1,6 @@
 <idea-plugin>
   <id>swingexplorer-plugin-v2</id>
   <name>SwingExplorer Integration v2</name>
-  <version>2020.1-1.6.0</version>
   <vendor email="wernerglanzer@googlemail.com">Werner Glanzer</vendor>
 
   <description><![CDATA[
@@ -35,7 +34,8 @@
     ]]></change-notes>
 
   <extensions defaultExtensionNs="com.intellij">
-    <!-- Add your extensions here -->
+    <executor implementation="com.github.wglanzer.swingexplorer.Executor"/>
+    <programRunner implementation="com.github.wglanzer.swingexplorer.Runner"/>
   </extensions>
 
   <depends>com.intellij.modules.platform</depends>

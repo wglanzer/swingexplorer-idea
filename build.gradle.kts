@@ -11,6 +11,7 @@ repositories {
 }
 
 dependencies {
+    compile(files("libs/swag.jar", "libs/swexpl.jar"))
     testImplementation("junit:junit:4.12")
 }
 
