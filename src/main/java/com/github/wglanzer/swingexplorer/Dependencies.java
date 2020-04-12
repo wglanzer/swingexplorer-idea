@@ -16,11 +16,11 @@ import java.io.File;
 class Dependencies
 {
 
-  private VirtualFile swagJarFile;
-  private VirtualFile swexplJarFile;
+  private VirtualFile agentJarFile;
+  private VirtualFile explorerJarFile;
 
   /**
-   * Returns the agent (swag.jar)
+   * Returns the agent jar file
    *
    * @return the agent file
    * @throws ExecutionException if file could not be found
@@ -29,11 +29,11 @@ class Dependencies
   public VirtualFile getAgentFile() throws ExecutionException
   {
     _checkValid();
-    return swagJarFile;
+    return agentJarFile;
   }
 
   /**
-   * Returns the explorer (swexpl.jar)
+   * Returns the explorer jar file
    *
    * @return the explorer file
    * @throws ExecutionException if file could not be found
@@ -42,7 +42,7 @@ class Dependencies
   public VirtualFile getExplorerFile() throws ExecutionException
   {
     _checkValid();
-    return swexplJarFile;
+    return explorerJarFile;
   }
 
   /**
@@ -50,9 +50,9 @@ class Dependencies
    */
   private void _checkValid() throws ExecutionException
   {
-    if (swagJarFile == null || swexplJarFile == null)
+    if (agentJarFile == null || explorerJarFile == null)
       _initJarFiles();
-    if (swagJarFile == null || swexplJarFile == null)
+    if (agentJarFile == null || explorerJarFile == null)
       throw new ExecutionException("SwingExplorer jars could not be found");
   }
 
@@ -73,8 +73,8 @@ class Dependencies
         VirtualFile lib = pluginDir.findChild("lib");
         if (lib != null && lib.isDirectory())
         {
-          swagJarFile = lib.findChild("swag.jar");
-          swexplJarFile = lib.findChild("swexpl.jar");
+          agentJarFile = lib.findChild("swingexplorer-agent-1.7.0.jar");
+          explorerJarFile = lib.findChild("swingexplorer-core-1.7.0.jar");
         }
       }
     }
