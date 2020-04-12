@@ -5,6 +5,7 @@ import com.intellij.execution.application.ApplicationConfiguration;
 import com.intellij.execution.configurations.*;
 import com.intellij.execution.impl.DefaultJavaProgramRunner;
 import com.intellij.execution.runners.*;
+import com.intellij.execution.ui.RunContentDescriptor;
 import com.intellij.ide.plugins.*;
 import com.intellij.notification.NotificationType;
 import com.intellij.openapi.extensions.PluginId;
@@ -60,22 +61,21 @@ public class Runner extends DefaultJavaProgramRunner
   }
 
   @Override
-  public void execute(@NotNull ExecutionEnvironment environment, @Nullable Callback callback, @NotNull RunProfileState state) throws ExecutionException
+  protected RunContentDescriptor doExecute(@NotNull RunProfileState state, @NotNull ExecutionEnvironment environment) throws ExecutionException
   {
-    ExecutionEnvironment fixedEnv = RunContentBuilder.fix(environment, this);
-
     // IntelliJ-Projekt holen und alle offenen Dokumente speichern
-    project = fixedEnv.getProject();
+    project = RunContentBuilder.fix(environment, this).getProject();
     FileDocumentManager.getInstance().saveAllDocuments();
 
     // Java-Settings initialisieren
     _initJavaSettings(state);
 
     // Ausf�hren
-    super.execute(environment, pRunContentDescriptor -> {
-      // Listener initialisieren, damit Benachrichtigungen vom SwingExplorer ankommen
+    RunContentDescriptor descr = super.doExecute(state, environment);
+    if(descr != null)
       _initListener();
-    }, state);
+
+    return descr;
   }
 
   /**
