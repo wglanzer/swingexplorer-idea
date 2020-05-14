@@ -1,0 +1,23 @@
+plugins {
+  id "java"
+  id "org.jetbrains.intellij" version "0.4.18"
+}
+
+project.group = "com.github.wglanzer.swingexplorer"
+project.version = "2020.1-1.6.0"
+
+repositories {
+  mavenCentral()
+  maven { setUrl("http://dl.bintray.com/jetbrains/intellij-plugin-service") }
+}
+
+intellij {
+  pluginName = "SwingExplorer Integration v2"
+  plugins = ["java"]
+  updateSinceUntilBuild = false
+}
+
+dependencies {
+  compile(files("libs/swag.jar", "libs/swexpl.jar"))
+  testImplementation("junit:junit:4.12")
+}

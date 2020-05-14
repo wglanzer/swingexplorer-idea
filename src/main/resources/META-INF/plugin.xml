@@ -3,41 +3,28 @@
   <name>SwingExplorer Integration v2</name>
   <vendor email="wernerglanzer@googlemail.com">Werner Glanzer</vendor>
 
+  <depends>com.intellij.modules.platform</depends>
+  <depends>com.intellij.modules.java</depends>
+  <idea-version since-build="201.6487.11"/>
+
   <description><![CDATA[
       <p>
-      SwingExplorer is a tool for Java Swing application debugging.
-      This plugin integrates it into IntelliJ IDEA, to use it without external console
+        SwingExplorer is a tool for Java Swing application debugging.
+        This plugin integrates it into IntelliJ IDEA, to use it without external console
       </p>
       <p></p>
-	  <p>
-		The plug-in was original contributed by <a href="mailto:pmlocek@gmail.com">Piotr Mlocek</a>.
-		Modified by <a href="mailto:wernerglanzer@googlemail.com">Werner Glanzer</a> (See on <a href="https://github.com/wglanzer/swingexplorer-idea">GitHub</a>).
+      <p>
+        The plug-in was original contributed by <a href="mailto:pmlocek@gmail.com">Piotr Mlocek</a>.
+        Modified by <a href="mailto:wernerglanzer@googlemail.com">Werner Glanzer</a> (See on <a href="https://github.com/wglanzer/swingexplorer-idea">GitHub</a>).
       </p>
    ]]></description>
-  <change-notes><![CDATA[
-    <p>2020.1-1.6.0</p>
-    <ul>
-      <li>Updated plugin to work with IntelliJ IDEA 2020.1</li>
-    </ul>
-    <p>182.4505.22-1.6.0</p>
-    <ul>
-      <li>Removed deprecated API-Calls to work properly with future versions of IntelliJ IDEA</li>
-    </ul>
-    <p>2016.1-1.6.0-1.0.1</p>
-    <ul>
-      <li>Fix: Invalid path to libs</li>
-    </ul>
-    <p>2016.1-1.6.0</p>
-    <ul>
-      <li>Updated plugin to work with IntelliJ IDEA 2016.1</li>
-    </ul>
-    ]]></change-notes>
+  <change-notes><![CDATA[ <ul>
+      <li>Specified correct version entry in plugin.xml</li>
+    </ul> ]]></change-notes>
 
   <extensions defaultExtensionNs="com.intellij">
     <executor implementation="com.github.wglanzer.swingexplorer.Executor"/>
     <programRunner implementation="com.github.wglanzer.swingexplorer.Runner"/>
   </extensions>
 
-  <depends>com.intellij.modules.platform</depends>
-  <depends>com.intellij.modules.java</depends>
 </idea-plugin>
