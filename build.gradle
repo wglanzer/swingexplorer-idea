@@ -4,7 +4,7 @@ plugins {
 }
 
 project.group = "com.github.wglanzer.swingexplorer"
-project.version = "2020.1-1.6.0"
+project.version = "2020.1-1.6.1"
 
 repositories {
   mavenCentral()
