@@ -20,5 +20,5 @@ intellij {
 
 dependencies {
   implementation(files("libs/swag.jar", "libs/swexpl.jar"))
-  testImplementation("junit:junit:4.12")
+  testImplementation('junit:junit:4.13.2')
 }
