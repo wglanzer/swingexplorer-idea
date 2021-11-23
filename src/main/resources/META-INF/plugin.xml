@@ -5,7 +5,7 @@
 
   <depends>com.intellij.modules.platform</depends>
   <depends>com.intellij.modules.java</depends>
-  <idea-version since-build="201.6487.11"/>
+  <idea-version since-build="212"/>
 
   <description><![CDATA[
       <p>

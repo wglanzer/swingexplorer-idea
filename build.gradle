@@ -1,6 +1,6 @@
 plugins {
   id "java"
-  id "org.jetbrains.intellij" version "0.4.18"
+  id "org.jetbrains.intellij" version "1.3.0"
 }
 
 project.group = "com.github.wglanzer.swingexplorer"
@@ -8,12 +8,13 @@ project.version = "2020.1-1.6.1"
 
 repositories {
   mavenCentral()
-  maven { setUrl("http://dl.bintray.com/jetbrains/intellij-plugin-service") }
 }
 
 intellij {
   pluginName = "SwingExplorer Integration v2"
   plugins = ["java"]
+  version = "2021.2"
+  type = "IC"
   updateSinceUntilBuild = false
 }
 
