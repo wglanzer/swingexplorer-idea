@@ -5,10 +5,12 @@ import com.intellij.execution.application.ApplicationConfiguration;
 import com.intellij.execution.configurations.*;
 import com.intellij.execution.impl.DefaultJavaProgramRunner;
 import com.intellij.execution.runners.*;
+import com.intellij.execution.target.TargetEnvironmentAwareRunProfileState;
 import com.intellij.execution.ui.RunContentDescriptor;
 import com.intellij.openapi.fileEditor.FileDocumentManager;
 import com.intellij.openapi.project.Project;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.concurrency.Promise;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -34,6 +36,30 @@ public class Runner extends DefaultJavaProgramRunner
   public boolean canRun(@NotNull String pExecutorID, @NotNull RunProfile pProfile)
   {
     return pExecutorID.equals(Executor.ID) && (pProfile instanceof ApplicationConfiguration);
+  }
+
+  @NotNull
+  @Override
+  protected Promise<RunContentDescriptor> doExecuteAsync(@NotNull TargetEnvironmentAwareRunProfileState pState,
+                                                         @NotNull ExecutionEnvironment pEnv) throws ExecutionException
+  {
+    Project project = RunContentBuilder.fix(pEnv, this).getProject();
+    if (!(pState instanceof JavaCommandLineState))
+      return super.doExecuteAsync(pState, pEnv);
+    JavaCommandLineState state = (JavaCommandLineState) pState;
+    int port = _getFreePort();
+    Dependencies dependencies = new Dependencies();
+
+    // 1) Save Project
+    FileDocumentManager.getInstance().saveAllDocuments();
+
+    // 2) Expand Settings with SwingExplorer ones
+    _initJavaSettings(state, dependencies, port);
+
+    // 3) Run and init listener
+    Promise<RunContentDescriptor> descr = super.doExecuteAsync(pState, pEnv);
+    descr.onSuccess(pDescr -> NotificationListenerImpl.create(project, port));
+    return descr;
   }
 
   @Override

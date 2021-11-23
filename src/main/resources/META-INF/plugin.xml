@@ -19,7 +19,7 @@
       </p>
    ]]></description>
   <change-notes><![CDATA[ <ul>
-      <li>Specified correct version entry in plugin.xml</li>
+      <li>Updated Plugin to work with >2021.2</li>
     </ul> ]]></change-notes>
 
   <extensions defaultExtensionNs="com.intellij">
