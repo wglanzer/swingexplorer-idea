@@ -2,7 +2,13 @@
 
 [![Build Status](https://travis-ci.org/wglanzer/swingexplorer-idea.svg?branch=master)](https://travis-ci.org/wglanzer/swingexplorer-idea)
 
-This plugin integrates the SwingExplorer into newer versions of IntelliJ.
+<!-- Plugin description -->
+SwingExplorer is a tool for Java Swing application debugging.
+This plugin integrates it into IntelliJ IDEA, to use it without external console
+
+The plug-in was original contributed by <a href="mailto:pmlocek@gmail.com">Piotr Mlocek</a>.
+Modified by <a href="mailto:wernerglanzer@googlemail.com">Werner Glanzer</a> (See on <a href="https://github.com/wglanzer/swingexplorer-idea">GitHub</a>).
+<!-- Plugin description end -->
 
 # How to use this plugin?
 

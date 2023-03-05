@@ -1,26 +1,11 @@
 <idea-plugin>
-  <id>swingexplorer-plugin-v2</id>
+
+<id>swingexplorer-plugin-v2</id>
   <name>SwingExplorer Integration v2</name>
   <vendor email="wernerglanzer@googlemail.com">Werner Glanzer</vendor>
 
   <depends>com.intellij.modules.platform</depends>
   <depends>com.intellij.modules.java</depends>
-  <idea-version since-build="212"/>
-
-  <description><![CDATA[
-      <p>
-        SwingExplorer is a tool for Java Swing application debugging.
-        This plugin integrates it into IntelliJ IDEA, to use it without external console
-      </p>
-      <p></p>
-      <p>
-        The plug-in was original contributed by <a href="mailto:pmlocek@gmail.com">Piotr Mlocek</a>.
-        Modified by <a href="mailto:wernerglanzer@googlemail.com">Werner Glanzer</a> (See on <a href="https://github.com/wglanzer/swingexplorer-idea">GitHub</a>).
-      </p>
-   ]]></description>
-  <change-notes><![CDATA[ <ul>
-      <li>Updated Plugin to work with >2021.2</li>
-    </ul> ]]></change-notes>
 
   <extensions defaultExtensionNs="com.intellij">
     <executor implementation="com.github.wglanzer.swingexplorer.Executor"/>
