@@ -53,6 +53,7 @@ class NotificationListenerImpl implements Runnable, NotificationListener
     try
     {
       JMXServiceURL url = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://:" + port + "/server");
+      //noinspection resource do not close, because we need it asynchronously
       JMXConnector jmxc = _connectToSwingExplorer(url);
       MBeanServerConnection mbsc = jmxc.getMBeanServerConnection();
       ObjectName name = new ObjectName("org.swingexplorer:name=IDESupport");
