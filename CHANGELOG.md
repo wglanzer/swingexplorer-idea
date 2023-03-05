@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Fixed
+- Fixed compatibility problems with >2022.3
+
 ## [1.7.0] - 2021-11-23
 
 ### Added

@@ -64,8 +64,7 @@ class Dependencies
     IdeaPluginDescriptor descriptor = PluginManagerCore.getPlugin(PluginId.getId(IStaticIDs.PLUGIN_ID));
     if (descriptor != null)
     {
-      File pluginPath = descriptor.getPath();
-      String url = VfsUtil.pathToUrl(pluginPath.getAbsolutePath());
+      String url = VfsUtil.pathToUrl(descriptor.getPluginPath().toFile().getAbsolutePath());
 
       VirtualFile pluginDir = VirtualFileManager.getInstance().findFileByUrl(url);
       if (pluginDir != null)

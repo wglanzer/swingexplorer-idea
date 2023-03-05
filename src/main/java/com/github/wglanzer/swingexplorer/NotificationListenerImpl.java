@@ -125,7 +125,7 @@ class NotificationListenerImpl implements Runnable, NotificationListener
       {
         FileEditorProviderManager editorProviderManager = FileEditorProviderManager.getInstance();
         VirtualFile virtualFile = psiClass.getContainingFile().getVirtualFile();
-        if (virtualFile == null || editorProviderManager.getProviders(pProject, virtualFile).length == 0)
+        if (virtualFile == null || editorProviderManager.getProviderList(pProject, virtualFile).isEmpty())
           return;
 
         Editor editor = FileEditorManager.getInstance(pProject).openTextEditor(new OpenFileDescriptor(pProject, virtualFile), true);
@@ -144,8 +144,9 @@ class NotificationListenerImpl implements Runnable, NotificationListener
       }
       else
       {
-        NotificationGroup.balloonGroup(IStaticIDs.NOTIFICATION_ID_WINDOW)
-            .createNotification("Swing Explorer", "Class not found: " + pClass, NotificationType.ERROR, null)
+        //noinspection DialogTitleCapitalization
+        NotificationGroupManager.getInstance().getNotificationGroup(IStaticIDs.NOTIFICATION_ID_WINDOW)
+            .createNotification("Swing Explorer", "Class not found: " + pClass, NotificationType.ERROR)
             .notify(pProject);
       }
     }));
